@@ -38,7 +38,20 @@ Next <button class="next">
 
 'use strict';
 
-const playList = ['mp3/LA_Fusion_Jam.mp3', 'mp3/This_is_it_band.mp3', 'mp3/LA_Chill_Tour.mp3'];
+const playList = [
+{
+	path: 'mp3/LA_Chill_Tour.mp3',
+	title: 'LA Chill Tour'
+},
+{
+	path: 'mp3/LA_Fusion_Jam.mp3',
+	title: 'LA Fusion Jam'
+},
+{
+	path: 'mp3/This_is_it_band.mp3',
+	title: 'This is it band'
+}
+];
 
 const visualPlay = document.getElementsByClassName('mediaplayer')[0],
 audio = document.getElementsByTagName('audio')[0],
@@ -59,26 +72,27 @@ playPause.onclick = function() {
 	}
 }
 
+stopPlayer.onclick = function() {
+	visualPlay.classList.toggle('play');
+	audio.pause();
+	audio.currentTime = 0;
+};
+
 const playListLength = playList.length - 1;
 let i = 0;
 
 nextTrack.onclick = function() {
 	playPause.click();
 	i === playListLength ? i = 0 : i++;
-	audio.src = playList[i];
-	title.title = playList[i];
+	audio.src = playList[i].path;
+	title.title = playList[i].title;
 	playPause.click();
 }
 
 prevTrack.onclick = function() {
 	playPause.click();
 	i === 0 ? i = playListLength : i--;
-	audio.src = playList[i];
-	title.title = playList[i];
+	audio.src = playList[i].path;
+	title.title = playList[i].title;
 	playPause.click();
 }
-
-stopPlayer.onclick = function() {
-	audio.pause();
-	audio.currentTime = 0;
-};
