@@ -73,7 +73,7 @@ playPause.onclick = function() {
 }
 
 stopPlayer.onclick = function() {
-	visualPlay.classList.toggle('play');
+	visualPlay.classList.remove('play');
 	audio.pause();
 	audio.currentTime = 0;
 };
